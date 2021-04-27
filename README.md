@@ -165,6 +165,7 @@ $ export APP_COLOR=blue; python app.py
 ```bash
 $ docker run -e APP_COLOR=blue simple-webapp-color
 ```
+
 ### Start the tutorial
 ```bash
 $ docker run -d -p 80:80 docker/getting-started
