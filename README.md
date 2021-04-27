@@ -131,10 +131,40 @@ $ docker run -p 83282:8080 kodekloud/simple-webapp:blue
 ```
 
 ### Docker command - inspect - Inspect Container
+* you can check the environment variable.
 ```bash
 $ docker inspect blissful_hopper
 ```
 
+### Docker command - logs - Container Logs
+```bash
+$ docker logs blissful_hopper
+```
+
+### Environment Variables
+* app.py
+```python
+import os
+from flask import Flask
+
+app = Flask(__name__)
+
+color = os.environ.get('APP_COLOR')
+
+@app.route("/")
+def main():
+  print(color)
+  return render_template('hello.html', color = color)
+
+if __name__ == "__main__":
+  app.run(host="0.0.0.0", port="8080")
+```
+```bash
+$ export APP_COLOR=blue; python app.py
+```
+```bash
+$ docker run -e APP_COLOR=blue simple-webapp-color
+```
 ### Start the tutorial
 ```bash
 $ docker run -d -p 80:80 docker/getting-started
